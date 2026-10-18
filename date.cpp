@@ -11,28 +11,24 @@ Date::Date(){
 void Date::init(std::string dateString){
 	std::stringstream converter;
 
-	std::stringstream sMonth;
-	std::stringstream sDay;
-	std::stringstream sYear;
+	std::string sMonth;
+	std::string sDay;
+	std::string sYear;
 
 	converter.str(dateString);
-	getLine(converter, sMonth, '/');
-	getLine(converter, sDay, '/');
-	getLine(converter, sYear, '/');
+	getline(converter, sMonth, '/');
+	getline(converter, sDay, '/');
+	getline(converter, sYear, '/');
 
 	converter.clear();
 	converter.str("");
 
-	converter << sMonth;
-	converter >> month;
-	converter << sDay;
-	converter >> day;
-	converter << sYear;
-	converter >> year;
+	converter << sMonth << " " << sDay << " " << sYear;
+	converter >> month >> day >> year;
 }
 void Date::printDate(){
 	std::string months[] = {"", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-	if (1 <= month <= 12){
+	if (month >= 1 && month <= 12){
 		std::cout << months[month] << " " << day << ", " << year << std::endl;
 	}
 	else{
